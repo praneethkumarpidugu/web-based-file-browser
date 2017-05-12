@@ -25,6 +25,37 @@ var sshConnection = conn.on('ready', function() {
                 // console.log('STDOUT: ' + data);
                 myresult.push(data);
                 fs.writeFileSync('data.txt', myresult);
+                var myData = fs.readFileSync('data.txt', 'utf8');
+
+                var lines = myData.split('\n');
+
+            //Have Properties for file size, file name according
+            //to their id's
+
+                var ourData = [];
+            //
+
+                var obj = {
+                    fileSize: ourData[0] ,
+                    Path: ourData[1]
+                };
+
+
+
+                var newLine = lines.splice(15);
+
+                for (var i=0; i<newLine.length; i++) {
+                    var replacedData = newLine[i].replace(/\,/g,"");
+                    ourData.push(replacedData.split('\t'));
+                }
+
+//Our Final Data with file size and Path Logged.
+
+                for (var j=0; j < ourData.length; j++) {
+
+                    console.log("ID: " + j + " File Size: " + ourData[j][0] + " File Path: " + ourData[j][1]);
+                }
+                return ourData;
 
             }).stderr.on('data', function(data) {
                 console.log('STDERR: ' + data);
@@ -32,47 +63,13 @@ var sshConnection = conn.on('ready', function() {
 
            stream.end("du -h --all\nexit\n");
 
-
         });
+
     }).connect({
-        host: 'YOUR IP ADDRESS',
-        port: 'YOUR PORT NUMBER',
-        username: 'YOUR USERNAME',
-        password: 'YOUR PASSWORD'
+        host: '192.168.0.16',
+        port: '22',
+        username: 'osboxes',
+        password: 'osboxes.org'
 
     });
 
-
-var myData = fs.readFileSync('data.txt', 'utf8');
-
-var lines = myData.split('\n');
-
-//Have Properties for file size, file name according
-//to their id's
-
-var ourData = [];
-
-
-var obj = {
-    fileSize: ourData[0] ,
-    Path: ourData[1]
-};
-
-
-
-var newLine = lines.splice(15);
-// console.log(myData.split('\n'));
-for (var i=0; i<newLine.length; i++) {
-    // console.log(newLine[i].replace(/\,/g,""));
-    var replacedData = newLine[i].replace(/\,/g,"");
-    ourData.push(replacedData.split('\t'));
-}
-//Our Final Data with file size and Path Loged.
-
-
-for (var j=0; j < ourData.length; j++) {
-
-    console.log("ID: " + j + " File Size: " + ourData[j][0] + " File Path: " + ourData[j][1]);
-}
-
-// console.log(ourData.reverse());
