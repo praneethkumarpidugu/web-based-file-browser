@@ -55,7 +55,7 @@ var sshConnection = conn.on('ready', function() {
 
                     console.log("ID: " + j + " File Size: " + ourData[j][0] + " File Path: " + ourData[j][1]);
                 }
-                return ourData;
+
 
             }).stderr.on('data', function(data) {
                 console.log('STDERR: ' + data);
