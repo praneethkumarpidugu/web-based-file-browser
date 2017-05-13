@@ -51,10 +51,29 @@ var sshConnection = conn.on('ready', function() {
 
 //Our Final Data with file size and Path Logged.
 
+                var completeParsedData = [];
+                var completeJSONData = [];
+
                 for (var j=0; j < ourData.length; j++) {
 
-                    console.log("ID: " + j + " File Size: " + ourData[j][0] + " File Path: " + ourData[j][1]);
+                    // console.log("ID: " + j + " File Size: " + ourData[j][0] + " File Path: " + ourData[j][1]);
+                    var parsedData = "ID: " + j + " File Size: " + ourData[j][0] + " File Path: " + ourData[j][1];
+                    // fs.writeFileSync('parsedData.txt', parsedData);
+                    var myJSONData = {
+                        ID: j,
+                        FileSize: ourData[j][0],
+                        FilePath: ourData[j][1]
+                    };
+
+                    // console.log(parsedData);
+                    console.log(myJSONData);
+                    // completeParsedData.push(parsedData);
+                    completeJSONData.push(myJSONData);
+                    // completeParsedData.push(myJSONData);
                 }
+
+                // fs.writeFileSync('parsedData.json', JSON.stringify(completeParsedData));
+                fs.writeFileSync('myJSONData.json', JSON.stringify(completeJSONData));
 
 
             }).stderr.on('data', function(data) {
@@ -66,10 +85,9 @@ var sshConnection = conn.on('ready', function() {
         });
 
     }).connect({
-        host: '192.168.0.16',
+        host: 'YOUR IP ADDRESS',
         port: '22',
-        username: 'osboxes',
-        password: 'osboxes.org'
+        username: 'YOUR USER NAME',
+        password: 'YOUR PASSWORD'
 
     });
-
