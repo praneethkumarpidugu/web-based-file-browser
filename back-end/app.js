@@ -89,7 +89,7 @@ var sshConnection = conn.on('ready', function() {
     }).connect({
         host: 'YOUR IP ADDRESS',
         port: '22',
-        username: 'YOUR USER NAME',
+        username: 'YOUR USERNAME',
         password: 'YOUR PASSWORD'
 
     });
