@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="webfile">
 <head>
     <title >Contacts</title >
     <link href="../libs/bootstrap/dist/css/bootstrap.min.css"
@@ -18,6 +18,23 @@
         </div >
     </div >
 </nav >
+
+<div class="container" ng-controller="FileBrowserController">
+    <div class="row">
+        <table class="table table-bordered">
+            <tr>
+                <th>File and Folder Path</th>
+                <th>File and Folder Size</th>
+            </tr>
+            <tr ng-repeat="data in mydata" ng-if="$index > 2">
+                <td>{{ data.FilePath}}</td>
+                <td>{{ data.FileSize}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!--<pre> {{ mydata | json }}</pre>-->
+</div>
 
 <script src="../libs/angular/angular.min.js" ></script >
 <script src="../libs/angular-resource/angular-resource.min.js"></script >
