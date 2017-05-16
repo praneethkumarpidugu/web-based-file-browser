@@ -42,7 +42,9 @@ var sshConnection = conn.on('ready', function() {
 
 
 
-                var newLine = lines.splice(15);
+                var newLine = lines
+                    .splice(15)
+                    .reverse();
 
                 for (var i=0; i<newLine.length; i++) {
                     var replacedData = newLine[i].replace(/\,/g,"");
